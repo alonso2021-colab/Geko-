@@ -4,6 +4,7 @@ const path = require('path');
 
 // Rutas
 const postRouter = require('./routes/postRoutes');
+const authRoutes = require('./routes/authRoutes')
 
 const app = express();
 
@@ -23,10 +24,15 @@ app.use(express.json());
 
 // Programar rutas
 app.get('/', (req, res) => {
-    res.redirect('/post');
+    res.redirect('/splash');
 });
 
-app.use('/post', postRouter);
+app.get('/login', (req, res) => {
+    res.render('post/login');
+});
+
+app.use('/splash', postRouter);
+app.use('/', authRoutes)
 
 // Levantar el servidor
 app.listen(port, () => {
