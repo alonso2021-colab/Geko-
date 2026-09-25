@@ -10,6 +10,10 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+router.get('/profile', (req, res) => {
+    res.render('profile');
+});
+
 router.post('/register', async (req, res) => {
   try {
     const { nombre, apellido, nombre_usuario, correo, numero, contrasena } = req.body;

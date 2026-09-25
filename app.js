@@ -4,7 +4,7 @@ const path = require('path');
 
 // Rutas
 const postRouter = require('./routes/postRoutes');
-const authRoutes = require('./routes/authRoutes')
+const authRoutes = require('./modules/authRoutes')
 
 const app = express();
 
@@ -31,10 +31,15 @@ app.get('/login', (req, res) => {
     res.render('post/login');
 });
 
+app.get('/profile', (req, res) => {
+    res.render('post/profile');
+});
+
 app.use('/splash', postRouter);
 app.use('/', authRoutes)
+app.use('/profile', postRouter)
 
 // Levantar el servidor
 app.listen(port, () => {
-    console.log(`Servidor escuchando en http://localhost:${port}`);
+    console.log(`Servidor arriva en http://localhost:${port}`);
 });
