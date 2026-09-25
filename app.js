@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const session = require('express-session')
+const flash = require('connect-flash')
 
 // Rutas
 const postRouter = require('./routes/postRoutes');
@@ -21,6 +23,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // JSON
 app.use(express.json());
+
+// session
+/*app.use(
+    session({
+        secret: '',
+        resave: false,
+        saveUninitialized: false
+    })
+)*/
 
 // Programar rutas
 app.get('/', (req, res) => {

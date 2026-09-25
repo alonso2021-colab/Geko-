@@ -1,5 +1,6 @@
 	CREATE DATABASE geko;
 	USE geko;
+ 
 
 	CREATE TABLE rol (
 		id_rol INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -7,7 +8,10 @@
 		nombre_rol VARCHAR(50) NOT NULL UNIQUE
 	);
 
-
+INSERT INTO rol (nombre_rol) VALUES
+  ('admin'),
+  ('cliente');
+SELECT * FROM rol;
 
 	CREATE TABLE usuarios (
 		id_usuario INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -23,7 +27,16 @@
 		FOREIGN KEY (id_rol) REFERENCES rol(id_rol) ON DELETE RESTRICT
 	);
 
+select * from usuarios;
 
+/* Cuenta de admin*/
+INSERT INTO usuarios (id_rol, nombre, apellido, correo, contrasena_hash, numero, nombre_usuario)
+VALUES (1, 'Geko', 'Fitness', 'geko.training@gmail.com', '$2b$10$LxeXMWSGrXPu6zFfvIf2qeNSgpfag72R8fym6mcNQhui93Rpu26Ca', '+56932927405', 'GEKO_admin');
+
+/*DELETE FROM clientes WHERE id_usuario > 0;
+DELETE FROM usuarios WHERE id_usuario > 0;
+ALTER TABLE clientes AUTO_INCREMENT = 1;
+ALTER TABLE usuarios AUTO_INCREMENT = 1;*/
 
 	CREATE TABLE antecedente (
 		id_antecedente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,

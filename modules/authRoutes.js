@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const pool = require('../config/db');
 
+const ID__ROL_ADMIN = 1;
 const ID_ROL_CLIENTE = 2;
 
 
@@ -45,6 +46,11 @@ router.post('/register', async (req, res) => {
       [ID_ROL_CLIENTE, nombre, apellido, correo, contrasena_hash, numero, nombre_usuario]
     );
 
+    await pool.query(
+      `INSERT INTO usuarios (id_rol, nombre, apellido, correo, contrasena_hash, numero, nombre_usuario)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [ID__ROL_ADMIN, nombre, apellido, correo, contrasena_hash, numero, nombre_usuario]
+    );
     return res.json({ success: true, message: 'Cuenta creada correctamente.' });
   } catch (err) {
     console.error(err);
