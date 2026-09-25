@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(function (data) {
         if (data.success) {
           successEl.textContent = data.message;
-          window.location.href = "/splash";
+          window.location.href = "/profile";
         } else {
           errorEl.textContent = data.message;
         }
