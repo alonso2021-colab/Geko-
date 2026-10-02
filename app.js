@@ -33,6 +33,20 @@ app.use(express.json());
     })
 )*/
 
+/*Flash
+app.use(flash());
+
+Variables globales
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success')
+    res.locals.error = req.flash('error')
+    res.locals.user = req.session.user || null
+
+    next()
+
+    })
+*/ 
+
 // Programar rutas
 app.get('/', (req, res) => {
     res.redirect('/splash');
