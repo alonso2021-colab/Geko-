@@ -8,4 +8,4 @@ router.get('/login', post_controller.login);
 
 router.get('/profile', post_controller.profile);
 
-module.exports = router
+module.exports = router;
