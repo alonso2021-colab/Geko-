@@ -6,7 +6,7 @@ const flash = require('connect-flash')
 
 // Rutas
 const postRouter = require('./routes/postRoutes');
-const authRoutes = require('./modules/authRoutes')
+const authRoutes = require('./routes/authRoutes')
 
 const app = express();
 
@@ -52,17 +52,8 @@ app.get('/', (req, res) => {
     res.redirect('/splash');
 });
 
-app.get('/login', (req, res) => {
-    res.render('post/login');
-});
-
-app.get('/profile', (req, res) => {
-    res.render('post/profile');
-});
-
 app.use('/splash', postRouter);
 app.use('/', authRoutes)
-app.use('/profile', postRouter)
 
 // Levantar el servidor
 app.listen(port, () => {
