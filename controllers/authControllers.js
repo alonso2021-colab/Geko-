@@ -1,6 +1,5 @@
-// controllers/authController.js
 const bcrypt = require('bcrypt');
-const UserModel = require('../models/UserModel');
+const UserModel = require('../models/userModels');
 
 const showLogin = (req, res) => {
   res.render('post/login');
@@ -59,7 +58,21 @@ const login = async (req, res) => {
       return res.status(401).json({ success: false, message: 'Correo o contraseña incorrectos.' });
     }
 
-    return res.json({ success: true, message: 'Inicio de sesión exitoso.' });
+    // Regenerar la sesión evita que un atacante reutilice un ID de sesión viejo
+    req.session.regenerate((err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ success: false, message: 'Error del servidor.' });
+      }
+
+      req.session.usuario = {
+        id_usuario: usuario.id_usuario,
+        id_rol: usuario.id_rol,
+        nombre: usuario.nombre
+      };
+
+      return res.json({ success: true, message: 'Inicio de sesión exitoso.' });
+    });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ success: false, message: 'Error del servidor.' });

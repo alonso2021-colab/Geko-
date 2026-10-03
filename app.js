@@ -24,14 +24,18 @@ app.use(express.urlencoded({ extended: true }));
 // JSON
 app.use(express.json());
 
-// session
-/*app.use(
+
+app.use(
     session({
-        secret: '',
+        secret: process.env.SESSION_SECRET,
         resave: false,
-        saveUninitialized: false
+        saveUninitialized: false,
+        cookie: {
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 2 // 2 horas
+        }
     })
-)*/
+)
 
 /*Flash
 app.use(flash());

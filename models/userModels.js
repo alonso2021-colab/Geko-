@@ -1,3 +1,4 @@
+// models/UserModel.js
 const pool = require('../config/db');
 
 const ID_ROL_ADMIN = 1;
